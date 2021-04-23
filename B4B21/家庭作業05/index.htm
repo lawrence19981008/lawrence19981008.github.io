@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>家庭作業05</title>
+        <style>
+            h4{color: red;}
+            div{color: blue;margin: 5px;}
+            tr{text-align: center;}
+            td{vertical-align:middle;}
+        </style>
+
+    </head>
+    <body>
+        <form id="form01">
+        姓名:<input type="text" name="name01" value="羅鼎凱"><br>
+        收件住址:<input type="text" name="address01" value="台北市民生東路三段113巷"><br>
+        電話:<input type="tel" name="tel01" value="0912345678"><br>
+        電子郵件:<input type="email" name="email01" value="lawrence19981008@gmail.com"><br>
+        指定送貨日期:<input type="date" name="date01" ><br>
+        運動用品種類:<br><input type="radio" name="sport" id="sport01" value="襪子(1雙)">襪子(1雙)100元<br>
+            <input type="radio" name="sport" id="sport02" value="運動上衣(1件)">運動上衣(1件)500元<br>
+            <input type="radio" name="sport" id="sport03" value="運動短褲(1件)">運動短褲(1件)800元<br>
+            <input type="radio" name="sport" id="sport04" value="運動長褲(1件)">運動長褲(1件)1000元<br>
+            <input type="radio" name="sport" id="sport05" value="運動鞋(1雙)">運動鞋(1雙)2000元<br>
+
+        </form>
+        <button onclick="shoppingInfo()"><h4>結帳</h4></button>
+        <div id="demo">
+        <script>
+        function shoppingInfo(){
+            var x = document.getElementById("form01");
+            var item ="";
+            var price = 0;
+            var text = "<h4>您的購物資訊如下:</h4>";
+            var i;
+            var table = document.createElement('table');
+            table.setAttribute('border','1');
+
+            for (i = 0; i < 5 ; i++){
+                var row = table.insertRow();
+                switch(i){
+                    case 0:
+                        item = "姓名:";
+                        break;
+                    case 1:
+                        item = "收件住址:";
+                        break;
+                    case 2:
+                        item = "電話:";
+                        break;
+                    case 3:
+                        item = "電子郵件:";
+                        break;
+                    case 4:
+                        item = "指定送貨日期:";
+                        break;
+                      }
+                var cell = row.insertCell();
+                cell.innerHTML = item;
+                cell.setAttribute('align','left');
+                var cell = row.insertCell();
+                cell.innerHTML = x.elements[i].value;
+                cell.setAttribute('align','left');
+
+            }
+
+            for(i=5;i<=9; i++){
+                if(x.elements[i].checked==true){
+                    switch(i){
+                        case 5: price=100; break;
+                        case 6: price=500; break;
+                        case 7: price=800; break;
+                        case 8: price=1000; break;
+                        case 9: price=2000; break;
+                    }
+                    fruit =  x.elements[i].value ;
+                    var row = table.insertRow();
+                    var cell = row.insertCell();
+                    cell.innerHTML = "運動用品種類:";
+                    cell.setAttribute('align','left');
+                    var cell = row.insertCell();
+                    cell.innerHTML = x.elements[i].value;
+                    cell.setAttribute('align','left');
+
+                    var row = table.insertRow();
+                    var cell = row.insertCell();
+                    cell.innerHTML = "價格合計:";
+                    cell.setAttribute('align','left');
+
+                    var cell = row.insertCell();
+                    cell.innerHTML = price+"元";
+                    cell.setAttribute('align','left');
+
+                }
+
+              }
+
+            document.getElementById("demo").appendChild(table);
+        }
+
+        </script>
+
+    </body>
+</html>
